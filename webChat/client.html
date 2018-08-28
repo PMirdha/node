@@ -1,6 +1,8 @@
-<textarea id='msg_history'></textarea>
+<textarea id='msg_history'></textarea></br>
 <button id='connect'>Connect</button>
-<button id='disconnect'>Disconnect</button>
+<button id='disconnect'>Disconnect</button></br>
+<textarea id='message'></textarea></br>
+<button id='publish'>Publish</button>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -26,6 +28,18 @@ $(document).ready(function(){
         {
             alert("connection not in ready state - "+websocket_connection.readyState);
         }
+    });
+    $("#publish").click(function(){
+        var msg = $("#message").val();
+        $("#message").val('');
+        var json_data = JSON.stringify({
+            "event": "publish",
+            "data": {
+                "msg": msg
+            }
+        });
+        console.log(json_data, "publishing to everyone");
+        doSend(json_data);
     });
 });
 

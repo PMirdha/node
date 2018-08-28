@@ -9,6 +9,7 @@ $(document).ready(function(){
         websocket_connection.onclose = function(evt) { onClose(evt) };
         websocket_connection.onmessage = function(evt) { onMessage(evt) };
         websocket_connection.onerror = function(evt) { onError(evt) };
+        doSend("HELLO");
         // websocket_connection.close();
     });
     $("#disconnect").click(function(){
